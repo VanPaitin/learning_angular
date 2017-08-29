@@ -1,14 +1,14 @@
 (function() {
   var app = angular.module("app", [])
-  function MainController($scope, $http, $interval, $log, $anchorScroll, $location) {
+  function MainController($scope, github, $interval, $log, $anchorScroll, $location) {
     var onRepos = function(response) {
-      $scope.repos = response.data
+      $scope.repos = response
       $location.hash("user-details")
       $anchorScroll()
     }
     var onUserComplete = function(response) {
-      $scope.user = response.data
-      $http.get($scope.user.repos_url)
+      $scope.user = response
+      github.getRepos($scope.user)
            .then(onRepos, onError)
     }
     var onError = function(reason) {
@@ -20,8 +20,8 @@
     var countDownInterval = null
     $scope.search = function() {
       $log.info(`Searching for ${$scope.username}`)
-      $http.get(`https://api.github.com/users/${$scope.username}`)
-           .then(onUserComplete, onError)
+      github.getUser($scope.username)
+            .then(onUserComplete, onError)
       if (countDownInterval) {
         $interval.cancel(countDownInterval)
       }
