@@ -19,6 +19,6 @@
       getRepos
     }
   }
-  var module = angular.module("app")
+  var module = angular.module("githubViewer")
   module.factory("github", github)
 })()

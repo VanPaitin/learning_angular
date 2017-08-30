@@ -1,24 +1,19 @@
 <!DOCTYPE html>
-<html lang="en" ng-app="app">
+<html lang="en" ng-app="githubViewer">
   <head>
     <title>Learning Angular</title>
     <script src="angular.js"></script>
-    <script src="script.js"></script>
+    <script src="angular-route.js"></script>
+    <script src="app.js"></script>
+    <script src="MainController.js"></script>
+    <script src="UserController.js"></script>
     <script src="github.js"></script>
     <link rel="icon" type="image/png" href="/favicon.png">
   </head>
 
-  <body ng-controller="MainController">
-    <h1>{{username.toUpperCase()}}</h1>
-    {{1200 * 360}}
-
-    <div>{{error}}</div>
-    {{ countdown }}
-    <form name="searchUser" ng-submit="search()">
-      <input type="text" required placeholder="Username to find" ng-model="username"/>
-      <input type="submit", value="Search" />
-    </form>
-    <div ng-include="'/userDetails.html'" ng-show="user"></div>
+  <body>
+    <h1>Github Viewer</h1>
+    <div ng-view></div>
   </body>
 
 </html>
