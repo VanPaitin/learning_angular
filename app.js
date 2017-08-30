@@ -1,6 +1,7 @@
 (function() {
   var app = angular.module("githubViewer", ["ngRoute"])
-  app.config(function($routeProvider) {
+  app.config(['$routeProvider', '$locationProvider', function($routeProvider, $locationProvider) {
+    $locationProvider.hashPrefix('');
     $routeProvider
       .when("/main", {
         templateUrl: "main.html",
@@ -10,6 +11,10 @@
         templateUrl: "user.html",
         controller: "UserController"
       })
+      .when("/repos/:username/:repo", {
+        templateUrl: "repo.html",
+        controller: "RepoController"
+      })
       .otherwise({redirectTo: "/main"})
-  })
+  }])
 })()

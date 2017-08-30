@@ -11,6 +11,7 @@
     <option value="+language">Language</option>
   </select>
 </div>
+
 <table>
   <thead>
     <tr>
@@ -19,7 +20,7 @@
   </thead>
   <tbody>
     <tr ng-repeat="repo in repos | orderBy: repoSortOrder">
-      <td>{{repo.name}}</td>
+      <td><a ng-href="#/repos/{{user.login}}/{{repo.name}}">{{repo.name}}</a></td>
       <td>{{repo.stargazers_count | number}}</td>
       <td>{{repo.language}}</td>
     </tr>

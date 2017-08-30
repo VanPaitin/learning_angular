@@ -14,9 +14,23 @@
                   })
     }
 
+    getRepo = function(user, repo) {
+      var repo;
+      var repoUrl = `https:api.github.com/repos/${user}/${repo}`
+      return $http.get(repoUrl)
+                  .then(function(response) {
+                    repo = response.data
+                    return $http.get(`${repoUrl}/contributors`)
+                  }).then(function(response) {
+                    repo.collaborators = response.data
+                    return repo;
+                  })
+    }
+
     return {
       getUser,
-      getRepos
+      getRepos,
+      getRepo
     }
   }
   var module = angular.module("githubViewer")

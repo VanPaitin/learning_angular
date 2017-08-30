@@ -22,7 +22,7 @@ var MainController = function($scope, $interval, $location) {
   }
 
   $scope.username = "angular"
-  $scope.countdown = 5
+  $scope.countdown = 10
   startCount()
 }
 app.controller("MainController", MainController)
